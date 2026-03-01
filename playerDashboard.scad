@@ -52,12 +52,7 @@ module myrotate(a, orig) {
 }
 
 
-module chainLink(length, width, thickness){
-  difference(){
-    cube([length, width, thickness], true);
-    cube([length-thickness*2, width-thickness*2, thickness+c], true);
-  }
-}
+
 
 module boxTracks(outerL, outerW, depth, radiusCorner, trackSize, thickness, innerFill){
   difference(){
