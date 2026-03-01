@@ -1,4 +1,3 @@
-
 c = 1;
 m = 2;
 thickness = 1;
@@ -57,13 +56,6 @@ module chainLink(length, width, thickness){
   difference(){
     cube([length, width, thickness], true);
     cube([length-thickness*2, width-thickness*2, thickness+c], true);
-  }
-}
-
-module deckBox(length, width, height, thickness, margin){
-  difference(){
-    cube([length + margin*2 + thickness*2, width + margin*2 + thickness*2, height], center=true);
-    translate([0,thickness,thickness]) cube([length + margin*2+thickness*3, width + margin*2 + thickness*2, height], center=true);
   }
 }
 
@@ -320,23 +312,6 @@ rotate([0,0,180])mirror([0,1,0]){
 }
 */
 
-
-module deckCompartment(length, width, height, thickness, sideThickness, shelves, shelfThickness, fingerSlot){
-  difference(){
-    deckBox(charAbilityLength+m*2+thickness*2, attackModifierWidth+thickness*2+m*2, attackModifierHeight, thickness, m);
-    if(fingerSlot){
-      translate([0,42,-20]) cylinder(r=fingerSlotSize, h=40, $fn=100);
-    }
-  }
-  
-  translate([charAbilityLength/2+4,0,0]) rotate([90,0,90])
-    side(attackModifierWidth+m*2+thickness*8,attackModifierHeight,5,7);
-  
-  rotate([0,0,180])mirror([0,1,0]){
-    translate([charAbilityLength/2+4,0,0]) rotate([90,0,90])
-      side(attackModifierWidth+m*2+thickness*8,attackModifierHeight,4,7);
-  }
-}
 
 module shelf(length, width, thickness, fingerSlot){
   difference(){
