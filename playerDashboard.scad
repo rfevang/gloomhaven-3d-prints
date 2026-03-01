@@ -1,3 +1,5 @@
+use <shelf.scad>
+
 c = 1;
 m = 2;
 thickness = 1;
@@ -308,15 +310,7 @@ rotate([0,0,180])mirror([0,1,0]){
 */
 
 
-module shelf(length, width, thickness, fingerSlot){
-  difference(){
-    translate([0,0,0])
-      cube([length, width, thickness], true);
-    if(fingerSlot){
-      translate([0,width/2,-thickness]) cylinder(r=fingerSlotSize, h=thickness*2, $fn=100);
-    }
-  } 
-}
+
 
 module side(length, height, thickness, radiusCorner){
   difference(){
@@ -1085,7 +1079,7 @@ module deckStorage(side){
     // shelf groves
     // Lid grove
     translate([0,-5.99+attackModifierWidth/2,attackModifierHeight/2-thickness*2.5])
-      shelf(charAbilityLength+m*2+thickness*6,attackModifierWidth*2-2,thickness*1.5, true);
+      shelf(charAbilityLength+m*2+thickness*6,attackModifierWidth*2-2,thickness*1.5, fingerSlotSize);
     translate([charAbilityLength/2+2.89,0.01+0*attackModifierWidth/2,attackModifierHeight/2-thickness*2.5+0.75])
       rotate([0,45,0])cube([3,attackModifierWidth+10,3], true);
     translate([-(charAbilityLength/2+2.89),0.01+0*attackModifierWidth/2,attackModifierHeight/2-thickness*2.5+0.75])
@@ -1097,7 +1091,7 @@ module deckStorage(side){
     
     // top shelf grove
     translate([0,-5.99+attackModifierWidth/2,0])
-      shelf(charAbilityLength+m*2+thickness*6,attackModifierWidth*2-2,thickness*1.5, true); 
+      shelf(charAbilityLength+m*2+thickness*6,attackModifierWidth*2-2,thickness*1.5, fingerSlotSize); 
     translate([charAbilityLength/2+2.89,0.01+0*attackModifierWidth/2,0.75])
       rotate([0,45,0])cube([3,attackModifierWidth+10,3], true);
     translate([-(charAbilityLength/2+2.89),0.01+0*attackModifierWidth/2,0.75])
@@ -1111,7 +1105,7 @@ module deckStorage(side){
     if(side == "discard"){
     // bottom shelf grove
       translate([0,attackModifierWidth/2,-7])
-        shelf(charAbilityLength+m*2+thickness*6,attackModifierWidth*2-1,thickness*1.5, true);
+        shelf(charAbilityLength+m*2+thickness*6,attackModifierWidth*2-1,thickness*1.5, fingerSlotSize);
       translate([charAbilityLength/2+2.89,5.5,-7+0.75])
         rotate([0,45,0])cube([3,attackModifierWidth+10,3], true);
       translate([-(charAbilityLength/2+2.89),5.5,-7+0.75])
