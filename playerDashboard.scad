@@ -103,36 +103,6 @@ module boxTracks(outerL, outerW, depth, radiusCorner, trackSize, thickness, inne
   //}
 }
 
-module snap(length, width, height, thickness, lockDepth, tolerance, female){
-  module hook(){
-      polyhedron(points=[[0,0,0],[1.5*lockDepth,0,0],[0, lockDepth,0],
-                      [0,0,height],[1.5*lockDepth,0,height],[0, lockDepth,height]],
-              faces=[[0,1,2],[0,2,5,3],[0,3,4,1],[1,4,5,2],[3,5,4]]);
-  }
-  
-  if(female){
-    translate([-length/2+1/2,0,0]) cube([1, width, height], true);
-    translate([0,width/2-thickness/2-thickness*2,0]) cube([length, thickness, height], true);
-    translate([length/2-1.5*lockDepth,width/2-thickness*2,-height/2]) hook();
-    
-    translate([-length/2+1/2,0,0]) cube([1, width, height], true);
-    translate([0,-(width/2-thickness/2-thickness*2),0]) cube([length, thickness, height], true);
-    translate([length/2-1.5*lockDepth,-(width/2-thickness*2),height/2]) rotate([180,0,0])hook();
-    
-  }else{
-    translate([length/2-(1-tolerence)/2,0,0]) cube([1-tolerence, width, height], true);
-    translate([0,width/2-thickness/2+tolerence/2,0]) cube([length, thickness-tolerence, height], true);
-    translate([-(length/2-1.5*lockDepth-1-tolerence),width/2-thickness*3/2+tolerence,0]) cube([length-2*1.5*lockDepth-1-tolerance, thickness, height], true);
-    translate([-(length-1.5*lockDepth-1+tolerance)/2+1,(width/2-thickness+tolerence),height/2-height]) rotate([180,180,0]) hook();
-    
-    translate([length/2-(1-tolerence)/2,0,0]) cube([1-tolerence, width, height], true);
-    translate([0,-(width/2-thickness/2+tolerence/2),0]) cube([length, thickness-tolerence, height], true);
-    translate([-(length/2-1.5*lockDepth-1-tolerence),-(width/2-thickness*3/2+tolerence),0]) cube([length-2*1.5*lockDepth-1-tolerance, thickness, height], true);
-    translate([-(length-1.5*lockDepth-1+tolerance)/2+1,-(width/2-thickness+tolerence),height/2]) rotate([0,180,0]) hook();
-  }
-}
-
-
 radiusCorner = 7;
 
 //
